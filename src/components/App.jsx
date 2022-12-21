@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
@@ -25,7 +27,7 @@ class App extends Component {
       number,
     };
     if (contacts.find(contact => contact.name === newContact.name)) {
-      alert(`${newContact.name} is already in contacts.`);
+      toast.info(`${newContact.name} is already in contacts.`);
       return;
     }
     this.setState(({ contacts }) => ({
@@ -57,6 +59,7 @@ class App extends Component {
 
     return (
       <div className={css.phonebook__form}>
+        <ToastContainer position="top-center" />
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
 
